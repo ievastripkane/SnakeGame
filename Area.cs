@@ -21,5 +21,8 @@ namespace SnakeGame
             this.Height = 400;
             this.Width = 400;
         }
+
+
+
     }
 }
