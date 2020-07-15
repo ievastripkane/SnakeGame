@@ -12,13 +12,31 @@ namespace SnakeGame
 {
     public partial class Game : Form
     {
+        int horVelocity = 0;
+        int verVelocity = 0;
+        int step = 20;
+
         Area area = new Area();
         Snake snake = new Snake();
+        Timer mainTimer = new Timer();
 
         public Game()
         {
             InitializeComponent();
             InitializeGame();
+            InitialieTimer();
+        }
+
+        private void InitialieTimer()
+        {
+            mainTimer.Interval = 500;
+            mainTimer.Tick += new EventHandler(MainTimer_Tick);
+            mainTimer.Start();
+        }
+
+        private void MainTimer_Tick(object sender, EventArgs e)
+        {
+
         }
 
         private void InitializeGame()
@@ -31,6 +49,31 @@ namespace SnakeGame
             area.Left = 100;
 
             snake.Render(this);
+            this.KeyDown += new KeyEventHandler(Game_KeyDown);
+        }
+
+        private void Game_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    snake.HorizontalVelocity = 1;
+                    snake.VerticalVelocity = 0;
+                    break;
+                case Keys.Left:
+                    snake.HorizontalVelocity = -1;
+                    snake.VerticalVelocity = 0;
+                    break;
+                case Keys.Up:
+                    snake.HorizontalVelocity = 0;
+                    snake.VerticalVelocity = -1;
+                    break;
+                case Keys.Down:
+                    snake.HorizontalVelocity = 0;
+                    snake.VerticalVelocity = 1;
+                    break;
+            }
         }
     }
+ 
 }
