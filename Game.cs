@@ -12,10 +12,6 @@ namespace SnakeGame
 {
     public partial class Game : Form
     {
-        int horVelocity = 0;
-        int verVelocity = 0;
-        int step = 20;
-
         Area area = new Area();
         Snake snake = new Snake();
         Timer mainTimer = new Timer();
@@ -36,7 +32,7 @@ namespace SnakeGame
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-
+            snake.Move();
         }
 
         private void InitializeGame()
@@ -57,20 +53,32 @@ namespace SnakeGame
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    snake.HorizontalVelocity = 1;
+                    if(snake.HorizontalVelocity != -1)
+                    {
+                        snake.HorizontalVelocity = 1;
+                    }
                     snake.VerticalVelocity = 0;
                     break;
                 case Keys.Left:
-                    snake.HorizontalVelocity = -1;
+                    if (snake.HorizontalVelocity != 1)
+                    {
+                        snake.HorizontalVelocity = -1;
+                    }
                     snake.VerticalVelocity = 0;
                     break;
                 case Keys.Up:
                     snake.HorizontalVelocity = 0;
-                    snake.VerticalVelocity = -1;
+                    if (snake.VerticalVelocity != 1)
+                    {
+                        snake.VerticalVelocity = -1;
+                    }
                     break;
                 case Keys.Down:
                     snake.HorizontalVelocity = 0;
-                    snake.VerticalVelocity = 1;
+                    if (snake.VerticalVelocity != -1)
+                    {
+                        snake.VerticalVelocity = 1;
+                    }
                     break;
             }
         }
