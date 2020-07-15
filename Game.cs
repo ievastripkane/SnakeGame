@@ -29,6 +29,8 @@ namespace SnakeGame
             this.Controls.Add(area);
             area.Top = 100;
             area.Left = 100;
+
+            snake.Render(this);
         }
     }
 }

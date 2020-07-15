@@ -23,8 +23,15 @@ namespace SnakeGame
             snakePixel.Height = 20;
             snakePixel.Width = 20;
             snakePixel.BackColor = Color.Orange;
-            snakePixels.Add(snakePixel);
+            snakePixels.Add(snakePixel); 
         }
 
+        public void Render(Form form)
+        {
+            foreach(var sp in snakePixels)
+            {
+                form.Controls.Add(sp);
+            }
+        }
     }
 }
