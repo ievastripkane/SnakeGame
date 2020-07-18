@@ -38,6 +38,7 @@ namespace SnakeGame
             snake.Move();
             SnakeFoodCollision();
             SnakeBorderCollision();
+            SnakeSelfCollision();
         }
 
         private void InitializeGame()
@@ -106,6 +107,17 @@ namespace SnakeGame
             }
         }
 
+        private void SnakeSelfCollision()
+        {
+            for(int i = 1; i < snake.snakePixels.Count; i++)
+            {
+                if (snake.snakePixels[0].Bounds.IntersectsWith(snake.snakePixels[i].Bounds))
+                {
+                    GameOver();
+                }
+            }
+        }
+
         private void SnakeBorderCollision()
         {
             if (!snake.snakePixels[0].Bounds.IntersectsWith(area.Bounds))
@@ -118,6 +130,7 @@ namespace SnakeGame
         {
             mainTimer.Stop();
             snake.snakePixels[0].BackColor = Color.Red;
+            snake.snakePixels[0].BringToFront();
             MessageBox.Show("Game over! Your score:" + score);
         }
 
