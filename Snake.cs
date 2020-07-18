@@ -14,7 +14,7 @@ namespace SnakeGame
         public int VerticalVelocity { get; set; } = 0;
         public int Step { get; set; } = 20;
 
-        List<PictureBox> snakePixels = new List<PictureBox>();
+        public List<PictureBox> snakePixels = new List<PictureBox>();
 
         public Snake()
         {
@@ -28,7 +28,7 @@ namespace SnakeGame
             this.AddPixel(300, 340);
         }
 
-        private void AddPixel(int left, int top)
+        public void AddPixel(int left, int top)
         {
             PictureBox snakePixel;
             snakePixel = new PictureBox();
