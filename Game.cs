@@ -15,6 +15,8 @@ namespace SnakeGame
         Area area = new Area();
         Snake snake = new Snake();
         Timer mainTimer = new Timer();
+        Food food = new Food();
+        Random rand = new Random();
 
         public Game()
         {
@@ -45,7 +47,18 @@ namespace SnakeGame
             area.Left = 100;
 
             snake.Render(this);
+
+            this.Controls.Add(food);
+            food.BringToFront();
+            GenerateFood();
+
             this.KeyDown += new KeyEventHandler(Game_KeyDown);
+        }
+
+        private void GenerateFood()
+        {
+            food.Top = 100 + rand.Next(0, 20) * 20;
+            food.Left = 100 + rand.Next(0, 20) * 20;
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)
